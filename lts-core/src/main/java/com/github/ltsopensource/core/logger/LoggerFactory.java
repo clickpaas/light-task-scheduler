@@ -3,7 +3,7 @@ package com.github.ltsopensource.core.logger;
 
 import com.github.ltsopensource.core.logger.jcl.JclLoggerAdapter;
 import com.github.ltsopensource.core.logger.jdk.JdkLoggerAdapter;
-import com.github.ltsopensource.core.logger.log4j.Log4jLoggerAdapter;
+//import com.github.ltsopensource.core.logger.log4j.Log4jLoggerAdapter;
 import com.github.ltsopensource.core.logger.slf4j.Slf4jLoggerAdapter;
 import com.github.ltsopensource.core.logger.support.FailsafeLogger;
 import com.github.ltsopensource.core.spi.ServiceLoader;
@@ -33,7 +33,7 @@ public class LoggerFactory {
         } else if ("jcl".equals(logger)) {
             setLoggerAdapter(new JclLoggerAdapter());
         } else if ("log4j".equals(logger)) {
-            setLoggerAdapter(new Log4jLoggerAdapter());
+//            setLoggerAdapter(new Log4jLoggerAdapter());
         } else if ("jdk".equals(logger)) {
             setLoggerAdapter(new JdkLoggerAdapter());
         } else {
@@ -41,7 +41,7 @@ public class LoggerFactory {
                 setLoggerAdapter(new Slf4jLoggerAdapter());
             } catch (Throwable e1) {
                 try {
-                    setLoggerAdapter(new Log4jLoggerAdapter());
+//                    setLoggerAdapter(new Log4jLoggerAdapter());
                 } catch (Throwable e2) {
                     try {
                         setLoggerAdapter(new JclLoggerAdapter());

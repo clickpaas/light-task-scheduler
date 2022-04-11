@@ -3,7 +3,7 @@ package com.github.ltsopensource.monitor;
 import com.github.ltsopensource.core.commons.file.FileUtils;
 import com.github.ltsopensource.core.commons.utils.Assert;
 import com.github.ltsopensource.core.commons.utils.StringUtils;
-import org.apache.log4j.PropertyConfigurator;
+//import org.apache.log4j.PropertyConfigurator;
 
 import java.io.*;
 import java.util.HashMap;
@@ -68,10 +68,10 @@ public class MonitorCfgLoader {
             throw new CfgException(e);
         }
 
-        if (FileUtils.exist(log4jPath)) {
-            //  log4j 配置文件路径
-            PropertyConfigurator.configure(log4jPath);
-        }
+//        if (FileUtils.exist(log4jPath)) {
+//            //  log4j 配置文件路径
+//            PropertyConfigurator.configure(log4jPath);
+//        }
 
         return cfg;
     }
