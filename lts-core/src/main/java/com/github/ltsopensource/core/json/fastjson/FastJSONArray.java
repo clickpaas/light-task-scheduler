@@ -241,11 +241,11 @@ public class FastJSONArray implements JSONArray {
 
     @Override
     public java.sql.Date getSqlDate(int index) {
-        return jsonArray.getSqlDate(index);
+        return (java.sql.Date) jsonArray.getSqlDate(index);
     }
 
     @Override
     public Timestamp getTimestamp(int index) {
-        return jsonArray.getTimestamp(index);
+        return (Timestamp) jsonArray.getTimestamp(index);
     }
 }

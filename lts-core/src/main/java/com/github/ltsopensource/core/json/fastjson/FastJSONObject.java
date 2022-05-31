@@ -1,5 +1,6 @@
 package com.github.ltsopensource.core.json.fastjson;
 
+import com.alibaba.fastjson.parser.ParserConfig;
 import com.github.ltsopensource.core.json.JSONArray;
 import com.github.ltsopensource.core.json.JSONObject;
 
@@ -15,7 +16,9 @@ import java.util.Set;
  * @author Robert HG (254963746@qq.com) on 11/19/15.
  */
 public class FastJSONObject implements JSONObject {
-
+    static {
+        ParserConfig.getGlobalInstance().setAutoTypeSupport(true);
+    }
     private com.alibaba.fastjson.JSONObject jsonObject;
 
     public FastJSONObject(com.alibaba.fastjson.JSONObject jsonObject) {
@@ -159,12 +162,12 @@ public class FastJSONObject implements JSONObject {
 
     @Override
     public java.sql.Date getSqlDate(String key) {
-        return jsonObject.getSqlDate(key);
+        return (java.sql.Date) jsonObject.getSqlDate(key);
     }
 
     @Override
     public Timestamp getTimestamp(String key) {
-        return jsonObject.getTimestamp(key);
+        return (Timestamp) jsonObject.getTimestamp(key);
     }
 
     @Override
