@@ -3,6 +3,7 @@ package com.github.ltsopensource.admin.web.filter;
 import com.github.ltsopensource.admin.support.AppConfigurer;
 import com.github.ltsopensource.core.commons.utils.Base64;
 import com.github.ltsopensource.core.commons.utils.StringUtils;
+import com.taobao.diamond.utils.EncryptionUtil;
 import org.springframework.util.AntPathMatcher;
 
 import javax.servlet.*;
@@ -30,7 +31,7 @@ public class LoginAuthFilter implements Filter {
     public void init(final FilterConfig filterConfig) throws ServletException {
         username = AppConfigurer.getProperty("console.username", username);
         password = AppConfigurer.getProperty("console.password", password);
-
+        password = EncryptionUtil.decodeContent(password);
         String excludedURLs = filterConfig.getInitParameter("excludedURLs");
         if (StringUtils.isNotEmpty(excludedURLs)) {
             String[] arr = excludedURLs.split(",");

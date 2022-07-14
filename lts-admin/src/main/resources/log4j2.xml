@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Properties>
+        <property name="LOG_DIR" value="${sys:user.home}/logs/lts-admin"/>
+        <property name="APP_LOGLEVEL" value="${app.logLevel:-INFO}"/>
+        <property name="PATTERN" value="%d{yyyy-MMM-dd HH:mm:ss.SSS} [%X{_tid}] [%-5level] [%thread] %l - %msg%n"/>
+    </Properties>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern=" [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+        <RollingFile name="App" fileName="${LOG_DIR}/app.log"
+                     filePattern="${LOG_DIR}/otherlogs/app-%d{yyyyMMdd}.%i.log" immediateFlush="false">
+            <PatternLayout pattern="${PATTERN}" charset="UTF-8"/>
+            <Policies>
+                <!--默认一天一个文件-->
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <!--一天内大于size就单独分隔-->
+                <SizeBasedTriggeringPolicy size="100MB"/>
+            </Policies>
+            <!--保存日志文件个数-->
+            <DefaultRolloverStrategy max="30"/>
+        </RollingFile>
+    </Appenders>
+
+
+    <Loggers>
+        <logger name="org.springframework.core" level="INFO"/>
+        <logger name="org.springframework.beans" level="INFO"/>
+        <logger name="org.springframework.context" level="INFO"/>
+        <logger name="org.springframework.web" level="INFO"/>
+        <logger name="org.apache.zookeeper" level="INFO"/>
+        <logger name="com.alibaba.dubbo" level="INFO"/>
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="App"/>
+        </Root>
+        <Logger name="org.springframework" level="info" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+    </Loggers>
+</Configuration>

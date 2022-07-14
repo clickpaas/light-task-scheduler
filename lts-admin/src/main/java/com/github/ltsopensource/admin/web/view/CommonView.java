@@ -26,6 +26,11 @@ public class CommonView {
         return "index";
     }
 
+    @RequestMapping("index.htm")
+    public String index2(){
+        return "index";
+    }
+
     @RequestMapping("node-manager")
     public String nodeManagerUI() {
         return "nodeManager";
